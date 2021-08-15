@@ -1,4 +1,5 @@
 import pandas as pd
+import os
 
 
 def readTitanic():
@@ -22,7 +23,10 @@ def writeTitanic():
     # titanic = pd.read_excel("../testFiles/titanic.csv")
     titanic = pd.read_csv("../testFiles/titanic.csv")
     # index=False 不输出 dataframe 索引
-    titanic.to_csv("../testOutputFiles/titanicOutput.csv", index=False)
+    path = "../testOutputFiles"
+    if not os.path.exists(path):
+        os.makedirs(path)
+    titanic.to_csv(os.path.join(path, "titanicOutput.csv"), index=False)
     print("-- end write titanic --")
 
 
